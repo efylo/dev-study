@@ -25,12 +25,101 @@
 
 ---
 
+### URL
+
+- GET Method를 활용한 submit
+
+  ```html
+  <form action="example.com" method="get">
+      <div>
+          <label for="id1">ID1</label>
+          <input name="id1" id="id1" value="1">
+      </div>
+      <div>
+          <label for="id2">ID2</label>
+          <input name="id2" id="id2" value="2">
+      </div>
+      <div>
+          <button>
+              submit
+          </button>
+      </div>
+  </form>
+  ```
+
+  ```http
+  GET /?id1=1&id2=2 HTTP/2.0
+  Host: example.com
+  ```
+
+  - Host 서버에, "/?id1=1&id2=2"에 대한 HTTP 요청이 전송
+  - 브라우저 상에 "example.com/?id1=1&id2=2" 주소가 노출
+
+  ---
+
+- POST Method를 활용한 submit
+
+  ```html
+  <form action="example.com" method="post" enctype="multipart/form-data">
+      <div>
+          <label for="field1">text type</label>
+          <input name="field1" id="field1" value="value1">
+      </div>
+      <div>
+          <label for="field2">choose a file</label>
+          <input type="file" id="field2" name="field2">
+      </div>
+      <div>
+          <button>
+              send
+          </button>
+      </div>
+  </form>
+  ```
+
+  - enctype="multipart/form-data"
+    - 파일을 전송할 경우, binary 데이터를 상정하기에, enctype 속성을 변경해주어야 한다. 
+
+  ```http
+  POST / HTTP/2.0
+  Host: example.com
+  Content-type: multipart/form-data;boundary="boundary"
+  
+  --boundary
+  Content-Disposition: form-data; name="field1"
+  
+  value1
+  --boundary
+  Content-Disposition: form-data; name="field2"; filename="example.txt"
+  
+  value2
+  --boundary--
+  ```
+
+  - --boundary
+    - 다음 Content의 위치를 알려준다. 
+  - --boundary--
+    - HTTP의 끝을 알려준다. 
+  - Content-Disposition
+    - value의 Disposition(특성)
+  - CRLF $\times$ 2
+    - value의 시작 위치를 알려준다. 
+
+---
+
 ### HTTP
 
-- HTTP의 메서드 중, HTML에서는 Get과 Post만 가능하다. 
-  - Put, Delete 등의 메서드는 지원하지 않는다. 
-- GET: Retrieve, 서버의 데이터를 요청한다. 
-  - HTTP 프로토콜의 본문(body)을 작성할 수 없다. 
-- POST: Create, 서버에 데이터를 생성한다. 
-- PUT: Update, 서버의 데이터를 변경한다. 
-- DELETE: 서버에 데이터 삭제를 요청한다. 
+- Get 및 Post를 주로 사용한다. 
+- Methods
+  - GET: Retrieve, 서버의 데이터를 요청한다. 
+    - Protocol의 본문(body)을 작성할 수 없다. 
+  - POST: Create, 서버에 데이터를 생성한다. 
+  - PUT: Update, 서버의 데이터를 변경한다. 
+  - DELETE: 서버에 데이터 삭제를 요청한다. 
+
+---
+
+### Reference
+
+- [MDN Web Docs - Guides/Forms/Sending form data](https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data)
+- [MDN Web Docs - Web/HTTP/Methods/POST](https://developer.mozilla.org/ko/docs/Web/HTTP/Methods/POST)
