@@ -16,7 +16,9 @@
     - Load하여 구동하기 위해, HttpServlet 인터페이스 상속 필요
     - WAS는 HttpServlet 추상 클래스를 호출하여 실행
   - HttpServlet 인터페이스
-    - service 메서드 구현 필요
+    - service 메서드 구현 필수
+      - protected 접근 제어자
+      - 이는, HttpServlet 인터페이스의 자식 클래스에서 사용 가능하다. 
 
 ---
 
@@ -30,7 +32,7 @@
   import java.io.*;
   
   public class Foo extends HttpServlet {
-      public void service(HttpServletRequest request
+      protected void service(HttpServletRequest request
                          , HttpServletResponse response)
                          throws IOException, ServletException
       {
@@ -104,7 +106,7 @@
     import java.io.*;
     
     public class Foo extends HttpServlet {
-        public void service(HttpServletRequest request
+        protected void service(HttpServletRequest request
                            , HttpServletResponse response)
                            throws IOException, ServletException
         {
@@ -133,7 +135,7 @@
     import java.io.*;
     
     public class Foo extends HttpServlet {
-        public void service(HttpServletRequest request
+        protected void service(HttpServletRequest request
                            , HttpServletResponse response)
                            throws IOException, ServletException
         {
@@ -147,6 +149,16 @@
 
   - 현재 실행하는 서블릿 프로그램이 문자열 / 바이트 데이터를 출력한다. 
   - 서블릿이 출력한 데이터를, WAS의 response 인스턴스가 입력받는다. 
+
+---
+
+### Problems
+
+- 출력 문제
+  - 브라우저에 컨텐츠의 형식을 알려주지 않았기에, 브라우저는 이를 자의적으로 해석
+  - Servlet이 보내는 웹 문서를 .txt / .html 등으로 해석하느냐에 따라서 브라우저는 이를 다르게 렌더링
+- 인코딩 문제
+  - ISO-8859-1
 
 ---
 
