@@ -61,6 +61,13 @@
 
 ---
 
+### Deploy
+
+- 개발 환경의 데이터를 배포하는 것이 아니다. 
+- 프로젝트의 메타데이터 내부에, 배포용 디렉토리가 따로 존재하여, 여기에 존재하는 데이터를 사용자에게 배포한다. 
+
+---
+
 ### Reference
 
 - [Youtube - 2020 Servlet&JSP 프로그래밍 by. 뉴렉처](https://www.youtube.com/channel/UC5-ixpj8DioZqmrasj6Ihpw)
