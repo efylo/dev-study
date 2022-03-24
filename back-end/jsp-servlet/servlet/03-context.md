@@ -36,6 +36,16 @@
 
 ---
 
+### Cautions
+
+- Eclipse project properties - Web project settings - Context root
+  - 프로젝트 전체의 Context를 지정, "/"을 지정함을 통해 프로젝트 명을 숨길 수 있다. 
+- Context root 변경 시
+  - 이미 Tomcat 서버에 한 번 이상 올라간 프로젝트의 경우, server.xml 파일에 프로젝트의 Context tag가 생성된다. 
+  - Tomcat은 이를 참조하기 때문에, Web Project Settings 뿐만 아니라 server.xml 파일도 수정해주어야 한다. 
+
+---
+
 ### Reference
 
 - [Youtube - 2020 Servlet&JSP 프로그래밍 by. 뉴렉처](https://www.youtube.com/channel/UC5-ixpj8DioZqmrasj6Ihpw)
