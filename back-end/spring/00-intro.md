@@ -82,6 +82,17 @@
   - mvn deploy
     - Maven 프로젝트를, 원격 저장소에 저장한다. 
     - 이를 통해, 내가 생성한 라이브러리를 다른 사용자들 또한 사용할 수 있다. 
+  
+- \<dependency>
+
+  - \<groupId>
+  - \<artifactId>
+  - \<scope>
+    - runtime
+      - 컴파일 시 해당 dependency를 사용하지 않는다
+      - 컴파일 단계에서 필요하다면 에러가 발생
+      - Eclipse - Maven Dependencies: 해당 라이브러리는 별도의 색으로 표현
+
 
 ---
 
